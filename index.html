@@ -36,7 +36,22 @@
 
 
     <main>
+<!-- SEARCH -->
 
+<section class="search-section">
+
+    <div class="container">
+
+        <input
+            type="search"
+            id="searchInput"
+            placeholder="Search watches... e.g. Under 500, Kids, Men"
+            onkeyup="searchWebsite()"
+        >
+
+    </div>
+
+</section>
         <!-- HOME -->
 
         <section id="home" class="hero">
@@ -597,7 +612,55 @@
 
     </footer>
 
+<script>
 
+function searchWebsite() {
+
+    const search =
+        document
+            .getElementById("searchInput")
+            .value
+            .toLowerCase()
+            .trim();
+
+
+    const sections =
+        document.querySelectorAll("main section");
+
+
+    sections.forEach(section => {
+
+        if (
+            section.id === "home" ||
+            section.id === "categories" ||
+            section.id === "about"
+        ) {
+            return;
+        }
+
+
+        const text =
+            section.innerText.toLowerCase();
+
+
+        if (
+            search === "" ||
+            text.includes(search)
+        ) {
+
+            section.style.display = "";
+
+        } else {
+
+            section.style.display = "none";
+
+        }
+
+    });
+
+}
+
+</script>
 </body>
 
 </html>
